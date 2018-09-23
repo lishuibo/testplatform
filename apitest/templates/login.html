@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="CONTENT-TYPE" content="text/html" charset="UTF-8">
+    <title>自动化测试平台</title>
+    <style>body{text-align: center}</style>
+</head>
+<body>
+<div>
+    <font size="1">
+        <h1>登录界面</h1>
+    </font>
+
+    <form method="post" action="/login/">
+        {% csrf_token %}
+        <br><a>&nbsp;&nbsp;用户名: </a> <input name="username" type="text" placeholder="username">
+        <br>
+        <br><a>&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码: </a><input name="password" type="password" placeholder="password">
+        <br>{{ error }}<br>
+        &nbsp;
+        <button style="width:220px;height: 28px;" id="submit" type="submit">登 录</button>
+    </form>
+</div>
+</body>
+</html>

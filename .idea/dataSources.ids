@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Django default" uuid="c3ef0c6e-b5dd-498a-9f61-ed8db6a308a7">
+    <database-info product="MySQL" version="5.6.14" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="autotest"/>
+    <table name="apitest_apis" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="apiname" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apiurl" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apiparamvalue" sqlType="VARCHAR" precision="800" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apimethod" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apiresult" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apistatus" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="create_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="product_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="apitest_apis_product_id_0243eb3e_fk_product_product_id" columns="product_id" ref-table="product_product" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="apitest_apis_product_id_0243eb3e_fk_product_product_id" unique="false" columns="product_id"/>
+    </table>
+    <table name="apitest_apistep" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="apistep" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="apiname" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apiurl" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apiparamvalue" sqlType="VARCHAR" precision="800" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apimethod" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="apiresult" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apistatus" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="apiresponse" sqlType="VARCHAR" precision="5000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="create_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="apitest_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="apitest_apistep_Apitest_id_ceefdb33_fk_apitest_apitest_id" columns="Apitest_id" ref-table="apitest_apitest" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="apitest_apistep_Apitest_id_ceefdb33_fk_apitest_apitest_id" unique="false" columns="apitest_id"/>
+    </table>
+    <table name="apitest_apitest" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="apitestname" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apitestdesc" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
+      <column name="apitester" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apitestresult" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="create_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="product_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="apitest_apitest_product_id_9667fd37_fk_product_product_id" columns="product_id" ref-table="product_product" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="apitest_apistep_Apitest_id_ceefdb33_fk_apitest_apitest_id" table="apitest_apistep" schema="" catalog="autotest" columns="Apitest_id"/>
+      <index name="apitest_apitest_product_id_9667fd37_fk_product_product_id" unique="false" columns="product_id"/>
+    </table>
+    <table name="apptest_appcase" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="appcasename" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apptestresult" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="apptester" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
+      <column name="create_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="product_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="apptest_appcase_product_id_eb875bae_fk_product_product_id" columns="product_id" ref-table="product_product" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="apptest_appcasestep_appcase_id_c5f1680d_fk_apptest_appcase_id" table="apptest_appcasestep" schema="" catalog="autotest" columns="appcase_id"/>
+      <index name="apptest_appcase_product_id_eb875bae_fk_product_product_id" unique="false" columns="product_id"/>
+    </table>
+    <table name="apptest_appcasestep" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="appteststep" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apptestobjname" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="appfindmethod" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="appevelement" sqlType="VARCHAR" precision="800" scale="0" nullable="false" jdbcType="12"/>
+      <column name="appoptmethod" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apptestdata" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="appassertdata" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="apptestresult" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="create_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="appcase_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="apptest_appcasestep_appcase_id_c5f1680d_fk_apptest_appcase_id" columns="appcase_id" ref-table="apptest_appcase" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="apptest_appcasestep_appcase_id_c5f1680d_fk_apptest_appcase_id" unique="false" columns="appcase_id"/>
+    </table>
+    <table name="auth_group" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" table="auth_group_permissions" schema="" catalog="autotest" columns="group_id"/>
+      <exported-key name="auth_user_groups_group_id_97559544_fk_auth_group_id" table="auth_user_groups" schema="" catalog="autotest" columns="group_id"/>
+      <index name="name" unique="true" columns="name"/>
+    </table>
+    <table name="auth_group_permissions" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="permission_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" columns="permission_id" ref-table="auth_permission" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" columns="group_id" ref-table="auth_group" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq" unique="true" columns="group_id,permission_id"/>
+      <index name="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" unique="false" columns="permission_id"/>
+    </table>
+    <table name="auth_permission" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="content_type_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="codename" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="auth_permission_content_type_id_2f476e4b_fk_django_co" columns="content_type_id" ref-table="django_content_type" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" table="auth_group_permissions" schema="" catalog="autotest" columns="permission_id"/>
+      <exported-key name="auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" table="auth_user_user_permissions" schema="" catalog="autotest" columns="permission_id"/>
+      <index name="auth_permission_content_type_id_codename_01ab375a_uniq" unique="true" columns="content_type_id,codename"/>
+    </table>
+    <table name="auth_user" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="password" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_login" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="is_superuser" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="username" sqlType="VARCHAR" precision="150" scale="0" nullable="false" jdbcType="12"/>
+      <column name="first_name" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" precision="150" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="254" scale="0" nullable="false" jdbcType="12"/>
+      <column name="is_staff" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="is_active" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="date_joined" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="auth_user_groups_user_id_6a12ed8b_fk_auth_user_id" table="auth_user_groups" schema="" catalog="autotest" columns="user_id"/>
+      <exported-key name="auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id" table="auth_user_user_permissions" schema="" catalog="autotest" columns="user_id"/>
+      <exported-key name="django_admin_log_user_id_c564eba6_fk" table="django_admin_log" schema="" catalog="autotest" columns="user_id"/>
+      <index name="username" unique="true" columns="username"/>
+    </table>
+    <table name="auth_user_groups" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="auth_user_groups_group_id_97559544_fk_auth_group_id" columns="group_id" ref-table="auth_group" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="auth_user_groups_user_id_6a12ed8b_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="auth_user_groups_user_id_group_id_94350c0c_uniq" unique="true" columns="user_id,group_id"/>
+      <index name="auth_user_groups_group_id_97559544_fk_auth_group_id" unique="false" columns="group_id"/>
+    </table>
+    <table name="auth_user_user_permissions" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="permission_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" columns="permission_id" ref-table="auth_permission" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" unique="true" columns="user_id,permission_id"/>
+      <index name="auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" unique="false" columns="permission_id"/>
+    </table>
+    <table name="bug_bug" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="bugname" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="bugdetail" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="bugstatus" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="buglevel" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="bugcreater" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="bugassign" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="create_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="product_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="bug_bug_product_id_a0410aad_fk_product_product_id" columns="product_id" ref-table="product_product" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="bug_bug_product_id_a0410aad_fk_product_product_id" unique="false" columns="product_id"/>
+    </table>
+    <table name="django_admin_log" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="action_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="object_id" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="object_repr" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="action_flag" sqlType="SMALLINT UNSIGNED" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="change_message" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="content_type_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="django_admin_log_user_id_c564eba6_fk" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="django_admin_log_content_type_id_c4bce8eb_fk_django_co" columns="content_type_id" ref-table="django_content_type" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="django_admin_log_content_type_id_c4bce8eb_fk_django_co" unique="false" columns="content_type_id"/>
+      <index name="django_admin_log_user_id_c564eba6_fk" unique="false" columns="user_id"/>
+    </table>
+    <table name="django_content_type" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="app_label" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="model" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="auth_permission_content_type_id_2f476e4b_fk_django_co" table="auth_permission" schema="" catalog="autotest" columns="content_type_id"/>
+      <exported-key name="django_admin_log_content_type_id_c4bce8eb_fk_django_co" table="django_admin_log" schema="" catalog="autotest" columns="content_type_id"/>
+      <index name="django_content_type_app_label_model_76bd3d3b_uniq" unique="true" columns="app_label,model"/>
+    </table>
+    <table name="django_migrations" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="app" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="applied" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="django_session" schema="" catalog="autotest" type="TABLE">
+      <column name="session_key" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="session_data" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="expire_date" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="session_key"/>
+      <index name="django_session_expire_date_a5c62663" unique="false" columns="expire_date"/>
+    </table>
+    <table name="product_product" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="productname" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="productdesc" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="producter" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="create_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="apitest_apis_product_id_0243eb3e_fk_product_product_id" table="apitest_apis" schema="" catalog="autotest" columns="product_id"/>
+      <exported-key name="apitest_apitest_product_id_9667fd37_fk_product_product_id" table="apitest_apitest" schema="" catalog="autotest" columns="product_id"/>
+      <exported-key name="apptest_appcase_product_id_eb875bae_fk_product_product_id" table="apptest_appcase" schema="" catalog="autotest" columns="product_id"/>
+      <exported-key name="bug_bug_product_id_a0410aad_fk_product_product_id" table="bug_bug" schema="" catalog="autotest" columns="product_id"/>
+    </table>
+    <table name="set_set" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="setname" sqlType="VARCHAR" precision="64" scale="0" nullable="false" jdbcType="12"/>
+      <column name="setvalue" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="t_student" schema="" catalog="autotest" type="TABLE">
+      <column name="Id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Name" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Sex" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Age" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ClassName" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="Id"/>
+    </table>
+    <table name="user" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sex" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="age" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+  </data-source>
+</component>

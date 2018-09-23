@@ -15,7 +15,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from apitest import views
+from product import productviews
+from bug import bugviews
+from set import setviews
+from apptest import appviews
+from webtest import webviews
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('test/', views.test),
+    path('login/', views.login),
+    path('home/', views.home),
+    path('logout/', views.logout),
+    path('product_manage/', productviews.product_manage),
+    path('apitest_manage/', views.apitest_manage),
+    path('apistep_manage/', views.apistep_manage),
+    path('apis_manage/', views.apis_manage),
+    path('bug_manage/', bugviews.bug_manage),
+    path('set_manage/', setviews.set_manage),
+    path('set_user/', setviews.set_user),
+    path('appcase_manage/', appviews.appcase_manage),
+    path('appcasestep_manage/', appviews.appcasestep_manage),
+    path('webcase_manage/', webviews.webcase_manage),
+    path('webcasestep_manage/', webviews.webcasestep_manage),
 ]
