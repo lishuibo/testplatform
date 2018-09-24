@@ -91,8 +91,8 @@
       <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="permission_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" columns="permission_id" ref-table="auth_permission" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="auth_group_permissions_group_id_b120cbf9_fk_auth_group_id" columns="group_id" ref-table="auth_group" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" columns="permission_id" ref-table="auth_permission" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq" unique="true" columns="group_id,permission_id"/>
       <index name="auth_group_permissio_permission_id_84c5c92e_fk_auth_perm" unique="false" columns="permission_id"/>
     </table>
@@ -140,8 +140,8 @@
       <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="permission_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" columns="permission_id" ref-table="auth_permission" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" columns="permission_id" ref-table="auth_permission" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="auth_user_user_permissions_user_id_permission_id_14a6b632_uniq" unique="true" columns="user_id,permission_id"/>
       <index name="auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm" unique="false" columns="permission_id"/>
     </table>
@@ -169,8 +169,8 @@
       <column name="content_type_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="django_admin_log_user_id_c564eba6_fk" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="django_admin_log_content_type_id_c4bce8eb_fk_django_co" columns="content_type_id" ref-table="django_content_type" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="django_admin_log_user_id_c564eba6_fk" columns="user_id" ref-table="auth_user" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="django_admin_log_content_type_id_c4bce8eb_fk_django_co" unique="false" columns="content_type_id"/>
       <index name="django_admin_log_user_id_c564eba6_fk" unique="false" columns="user_id"/>
     </table>
@@ -208,6 +208,7 @@
       <exported-key name="apitest_apitest_product_id_9667fd37_fk_product_product_id" table="apitest_apitest" schema="" catalog="autotest" columns="product_id"/>
       <exported-key name="apptest_appcase_product_id_eb875bae_fk_product_product_id" table="apptest_appcase" schema="" catalog="autotest" columns="product_id"/>
       <exported-key name="bug_bug_product_id_a0410aad_fk_product_product_id" table="bug_bug" schema="" catalog="autotest" columns="product_id"/>
+      <exported-key name="webtest_webcase_product_id_66a51854_fk_product_product_id" table="webtest_webcase" schema="" catalog="autotest" columns="product_id"/>
     </table>
     <table name="set_set" schema="" catalog="autotest" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -229,6 +230,35 @@
       <column name="sex" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
       <column name="age" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="webtest_webcase" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="webcasename" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="webtestresult" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="webtester" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
+      <column name="create_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="product_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="webtest_webcase_product_id_66a51854_fk_product_product_id" columns="product_id" ref-table="product_product" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="webtest_webcasestep_webcase_id_20df34a1_fk_webtest_webcase_id" table="webtest_webcasestep" schema="" catalog="autotest" columns="webcase_id"/>
+      <index name="webtest_webcase_product_id_66a51854_fk_product_product_id" unique="false" columns="product_id"/>
+    </table>
+    <table name="webtest_webcasestep" schema="" catalog="autotest" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="webcasename" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="webteststep" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="webtestobjname" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="webfindmethod" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="webevelement" sqlType="VARCHAR" precision="800" scale="0" nullable="false" jdbcType="12"/>
+      <column name="weboptmethod" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="webtestdata" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <column name="webassertdata" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="webtestresult" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="create_time" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="webcase_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="webtest_webcasestep_webcase_id_20df34a1_fk_webtest_webcase_id" columns="webcase_id" ref-table="webtest_webcase" ref-schema="" ref-catalog="autotest" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="webtest_webcasestep_webcase_id_20df34a1_fk_webtest_webcase_id" unique="false" columns="webcase_id"/>
     </table>
   </data-source>
 </component>
