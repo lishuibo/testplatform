@@ -14,3 +14,9 @@ def appcasestep_manage(request):
     appcasestep_list = Appcasestep.objects.all()
     username = request.session.get('user', '')
     return render(request, 'appcasestep_manage.html', {'user': username, 'appcasesteps': appcasestep_list})
+
+
+@login_required
+def apptest_report(request):
+    username = request.session.get('user', '')
+    return render(request, 'apptest_report.html')

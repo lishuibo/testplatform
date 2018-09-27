@@ -3,7 +3,6 @@ import requests, time, sys, re
 import urllib, zlib
 import pymysql
 
-
 from apitest import HTMLTestRunner
 import unittest
 from trace import CoverageResults
@@ -14,21 +13,29 @@ from time import sleep
 HOSTNAME = '127.0.0.1'
 
 
-def readSQLcase():
-    sql = 'SELECT id,apiname,apiurl,apimethod,apiparamvalue,apiresult,apistatus from apitest_apistep WHERE apitest_apistep.apitest_id=1;'
-    conn = pymysql.connect(user='root', passwd='123456', db='autotest', port=3306, host='127.0.0.1', charset='utf8')
-    cursor = conn.cursor()
-    aa = cursor.execute(sql)
-    info = cursor.fetchmany(aa)
+class ApiFlow(unittest.TestCase):
+    def setUp(self):
+        time.sleep(1)
 
-    for i in info:
-        case_list = []
-        case_list.append(i)
-        interfaceTest(case_list)
+    def test_readSQLcase(self):
+        sql = 'SELECT id,apiname,apiurl,apimethod,apiparamvalue,apiresult,apistatus from apitest_apistep WHERE apitest_apistep.apitest_id=1;'
+        conn = pymysql.connect(user='root', passwd='123456', db='autotest', port=3306, host='127.0.0.1', charset='utf8')
+        cursor = conn.cursor()
+        aa = cursor.execute(sql)
+        info = cursor.fetchmany(aa)
 
-    conn.commit()
-    cursor.close()
-    conn.close()
+        for i in info:
+            case_list = []
+            case_list.append(i)
+            interfaceTest(case_list)
+
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    def tearDown(self):
+        time.sleep(1)
+
 
 def interfaceTest(case_list):
     res_flags = []
@@ -57,6 +64,7 @@ def interfaceTest(case_list):
             new_url = 'http://' + url
         else:
             url = strinfo.sub(TaskId, url)
+            param = strinfo2.sub(PointId, param)
             param = strinfo.sub(TaskId, param)
             param = tasknoinfo.sub(taskno, param)
             new_url = 'http://' + '127.0.0.1' + url
@@ -84,9 +92,11 @@ def interfaceTest(case_list):
             if 'pass' == res:
                 writeResult(case_id, '1')
                 res_flags.append('pass')
+                caseWriteResult(case_id, '1')
             else:
                 res_flags.append('fail')
                 writeResult(case_id, '0')
+                caseWriteResult(case_id, '0')
 
         if method.upper == 'PUT':
             headers = {'Host': HOSTNAME, 'Connection': 'keep-alive', 'CredentialId': id,
@@ -151,6 +161,10 @@ def interfaceTest(case_list):
                 TaskId(results)
             except:
                 print('ok1')
+            try:
+                PointId(results)
+            except:
+                print('ok2')
 
 
 def readRes(res, res_check):
@@ -211,8 +225,22 @@ def taskno(param):
 def writeResult(case_id, result):
     result = result.encode('utf-8')
     now = time.strftime("%Y-%m-%d %H:%M:%S")
-    sql = "UPDATE apitest_apistep SET apitest_apistep.apistatus=%s WHERE apitest_apistep.apitest_id=%s;"
-    param = (result, case_id)
+    sql = "UPDATE apitest_apistep SET apitest_apistep.apistatus=%s,apitest_apistep.create_time=%s WHERE apitest_apistep.apitest_id=%s;"
+    param = (result, now, case_id)
+    print('api autotest result is ' + result.decode())
+    conn = pymysql.connect(user='root', passwd='123456', db='autotest', port=3306, host='127.0.0.1', charset='utf8')
+    cursor = conn.cursor()
+    cursor.execute(sql, param)
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+
+def caseWriteResult(case_id, result):
+    result = result.encode('utf-8')
+    now = time.strftime("%Y-%m-%d %H:%M:%S")
+    sql = "UPDATE apitest_apitest SET apitest_apitest.apitestresult=%s,apitest_apitest.create_time=%s WHERE apitest_apitest.id=%s;"
+    param = (result, now, case_id)
     print('api autotest result is ' + result.decode())
     conn = pymysql.connect(user='root', passwd='123456', db='autotest', port=3306, host='127.0.0.1', charset='utf8')
     cursor = conn.cursor()
@@ -230,7 +258,7 @@ def writeBug(bug_id, interface_name, request, response, res_check):
     bugdetail = '[请求数据]<br/>' + request.decode() + '<br/>' + '[预期结果]<br/>' + res_check.decode() + '<br/>' + '<br/>' + '[响应数据]<br/>' + '<br/>' + response.decode()
     print(bugdetail)
     sql = 'INSERT INTO bug_bug(bugname, bugdetail, bugstatus, buglevel, bugcreater, bugassign, create_time, product_id) VALUES ("%s","%s","1","1","李天乐","李天乐","%s","2");' % (
-    bugname, pymysql.escape_string(bugdetail), now)
+        bugname, pymysql.escape_string(bugdetail), now)
     conn = pymysql.connect(user='root', passwd='123456', db='autotest', port=3306, host='127.0.0.1', charset='utf8')
     cursor = conn.cursor()
     cursor.execute(sql)
@@ -238,7 +266,13 @@ def writeBug(bug_id, interface_name, request, response, res_check):
     cursor.close()
     conn.close()
 
+
 if __name__ == '__main__':
-    readSQLcase()
-    print('Done!')
-    time.sleep(1)
+    now = time.strftime("%Y-%m-%d-%H_%M_%S", time.localtime(time.time()))
+    testunit = unittest.TestSuite()
+    testunit.addTest(ApiFlow("test_readSQLcase"))
+
+    filename = "F:\\pycharmwork\\autotest\\report\\" + "apitest_report.html"
+    fp = open(filename, 'wb')
+    runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u"流程接口测试报告", description=u"流程场景接口")
+    runner.run(testunit)
