@@ -1,13 +1,20 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset //EN" "http://www.w3.org/TR/html4/frameset.dtd">
-<meta http-equiv="CONTENT-TYPE" content="text/html" charset="UTF-8">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <head>
-    <title>自动化测试平台</title>
+    <title>autotestplat-自动化平台测试开发</title>
 </head>
-<body>
-<ul class="nav navbar-nav navbar-right">
-    <li>welcome, <a href="#">{{ user }}</a></li>
-    <li><a href="/logout/">退出</a></li>
-</ul>
-</body>
+<frameset id="frame1" rows="*" cols="285,*" framespacing="0" frameborder="yes" border="0">
+    <frame src="../left" name="leftFrame" scrolling="auto" noresize>
+    <frame src="../apitest_manage" name="mainFrame" scrolling="NO" noresize>
+</frameset>
+<noframes>
+    <body>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li>欢迎您，<a href="../admin/">{{ user }}</a></li>
+        <li><a href="/logout/" target="_top">退出</a></li>
+    </ul>
+    </body>
 </noframes>
 </html>

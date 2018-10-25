@@ -42,6 +42,7 @@ class Apis(models.Model):
     REQUEST_METHOD = (('0', 'get'), ('1', 'post'), ('2', 'put'), ('3', 'delete'), ('4', 'patch'))
     apimethod = models.CharField(verbose_name='请求方法', choices=REQUEST_METHOD, default='0', max_length=200)
     apiresult = models.CharField('预期结果', max_length=200)
+    apitester = models.CharField('测试负责人', max_length=16, null=True)
     apistatus = models.BooleanField('是否通过')
     create_time = models.DateTimeField('创建时间', auto_now=True)
 
