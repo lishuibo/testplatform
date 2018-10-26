@@ -97,7 +97,9 @@
 
 <!--统计和翻页功能-->
 <span style="position:absolute; left:600px; bottom:30px;"/>   {# 把翻页功能固定显示在右下角#}
-
+<div style="position:absolute; right:600px; bottom:30px; width:100px;">
+    共:{{ setcounts }}条记录 {# 前端读取定义的变量#}
+</div>
 <div class="container">
     <ul class="pagination" id="pager">
         {# 上一页链接开始#}
@@ -127,5 +129,6 @@
         {% endif %}
         {# 下一页链接结束#}
     </ul>
+</div>
 </body>
 </html>

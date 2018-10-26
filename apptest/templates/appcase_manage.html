@@ -94,8 +94,8 @@
                     <td>{{ appcase.apptestresult }}</td>
                     <td>{{ appcase.apptester }}</td>
                     <td>{{ appcase.create_time }}</td>
-{#                    <td><a href="{% url "appcasestep_manage" %}?appcase.id={{ appcase.id }} "><img#}
-{#                            src="/static/admin/img/icon-yes.svg"/></a></td>#}
+                    <td><a href="{% url "appcasestep_manage" %}?appcase.id={{ appcase.id }} "><img
+                            src="/static/admin/img/icon-yes.svg"/></a></td>
                     <td><a style='color:lightblue' class="related-widget-wrapper-link add-related" id="add_id_Appcase"
                            href="../admin/apptest/appcase/{{ appcase.id }}/change/?_to_field=id&_popup=1"><img
                             src="/static/admin/img/icon-changelink.svg"/></a></td>
@@ -111,7 +111,7 @@
 
 <!--统计和翻页功能-->
 <span style="position:absolute; left:600px; bottom:30px;"/>   {# 把翻页功能固定显示在右下角#}
-<div style="position:absolute; right:950px; bottom:25px; width:100px;">
+<div style="position:absolute; right:600px; bottom:30px; width:100px;">
     共:{{ appcasecounts }}条记录 {# 前端读取定义的变量#}
 </div>
 
